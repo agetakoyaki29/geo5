@@ -39,19 +39,28 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
 
   // ---- use Trans2 ----
 
-  def to[A <: Trans2[A]](trans: A): A = trans from this
-  // def to[A : ClassTag](any: A): A = any match {
-  //   case trans2: Trans2[A] => trans2 from this
-  //   case any => any
-  // }
+  // def to[A <: Trans2[A]](trans: A): A = trans from this
+  def to[A : ClassTag](any: A): A = {
+    case class TransA(val trans: Trans2[A])
+    any match {
+      case TransA(trans) => trans from this
+      case any => any
+    }
+  }
 
-  def unto[A <: Trans2[A]](trans: A): A = trans unfrom this
-  // def unto[A : ClassTag](any: A): A = any match {
-  //   case trans2: Trans2[A] => trans2 unfrom this
-  //   case any => any
-  // }
+  // def unto[A <: Trans2[A]](trans: A): A = trans unfrom this
+  def unto[A : ClassTag](any: A): A = {
+    case class TransA(val trans: Trans2[A])
+    any match {
+      case TransA(trans) => trans unfrom this
+      case any => any
+    }
+  }
 
-  // def conjugate[A : ClassTag, B : ClassTag](f: A => B)(arg: A): B = unto(f(to(arg)))
+  // def conjugate[A, B](f: A => B): A => B = f match {
+  //   case f3: Trans2[A] => Trans2[B] => f3 compose {unto(_: A)} andThen {to(_: B)}
+  // }
+  def conjugate[A : ClassTag, B : ClassTag](f: A => B): A => B = f compose {unto(_: A)} andThen {to(_: B)}
 
   // ---- UpRet ----
 
