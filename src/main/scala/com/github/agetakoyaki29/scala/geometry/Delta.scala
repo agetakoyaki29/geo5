@@ -12,14 +12,14 @@ object Delta {
   def eq0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = {
     d1.abs <= (delta +: deltas).max
   }
-  def eq(d1: Double, d2: Double): Boolean = eq0(d1-d2, relativeDelta(d1), relativeDelta(d2))
-  // def sumeq0(ds: Seq[Double]): Boolean = eq0(ds.sum, ds.map{relativeDelta(_)}: _*)
+  def eq(d1: Double, d2: Double): Boolean = eq0(d1-d2, d1.relativeDelta, d2.relativeDelta)
+  // def sumeq0(ds: Seq[Double]): Boolean = eq0(ds.sum, ds.map{_.relativeDelta}: _*)
 
   def lt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 <= (delta +: deltas).max
-  def lt(d1: Double, d2: Double): Boolean = lt0(d1-d2, relativeDelta(d1), relativeDelta(d2))
+  def lt(d1: Double, d2: Double): Boolean = lt0(d1-d2, d1.relativeDelta, d2.relativeDelta)
 
   def gt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 <= (delta +: deltas).max
-  def gt(d1: Double, d2: Double): Boolean = gt0(d1-d2, relativeDelta(d1), relativeDelta(d2))
+  def gt(d1: Double, d2: Double): Boolean = gt0(d1-d2, d1.relativeDelta, d2.relativeDelta)
 
   // ---- Math ----
 
@@ -86,6 +86,7 @@ object Delta {
     def sqr: Double = that.scalb(1)
 
     // ---- copy from Delta ----
+    def relativeDelta: Double = Delta.relativeDelta(that)
     def =~(op: Double): Boolean = Delta.eq(that, op)
     def >~(op: Double): Boolean = Delta.gt(that, op)
     def <~(op: Double): Boolean = Delta.lt(that, op)
