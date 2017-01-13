@@ -125,22 +125,22 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
 
   // ---- copy from Range2 ----
 
-  def power: Double = ???
-  def powerSqr: Double = ???
-  def center: Point2 = ???
-  def isConcentric(circle: Circle2): Boolean = ???
-  def radicalLine(circle: Circle2): Line2 = ???
+  def power: Double = range.power
+  def powerSqr: Double = range.powerSqr
+  def center: Point2 = range.center unfrom sp
+  def isConcentric(circle: Circle2): Boolean = range.isConcentric(circle from sp)
+  def radicalLine(circle: Circle2): Line2 = range.radicalLine(circle from sp) unfrom sp
 
-  def through(pt: Point2): Boolean = ???
-  def containPoint2(pt: Point2): Boolean = ???
-  def distance(pt: Point2): Double = ???
-  def distanceSqr(pt: Point2): Double = ???
-  def nearest(pt: Point2): Point2 = ???
+  def through(pt: Point2): Boolean = range.through(pt from sp)
+  def containPoint2(pt: Point2): Boolean = range.containPoint2(pt from sp)
+  def distance(pt: Point2): Double = range.distance(pt from sp)
+  def distanceSqr(pt: Point2): Double = range.distanceSqr(pt from sp)
+  def nearest(pt: Point2): Point2 = range.nearest(pt from sp) unfrom sp
 
-  def same(circle: Circle2): Boolean = ???
-  def aabb: AABB2 = ???
-  def isIntersectLine2(line: Line2): Boolean = ???
-  def isIntersectCircle2(circle: Circle2): Boolean = ???
-  def intersectLine2(line: Line2): Set[Point2] = ???
-  def intersectCircle2(circle: Circle2): Set[Point2] = ???
+  def same(circle: Circle2): Boolean = range.same(circle from sp)
+  def aabb: AABB2 = range.aabb unfrom sp
+  def isIntersectLine2(line: Line2): Boolean = range.isIntersectLine2(line from sp)
+  def isIntersectCircle2(circle: Circle2): Boolean = range.isIntersectCircle2(circle from sp)
+  def intersectLine2(line: Line2): Set[Point2] = range.intersectLine2(line from sp) map {sp unto _}
+  def intersectCircle2(circle: Circle2): Set[Point2] = range.intersectCircle2(circle from sp) map {sp unto _}
 }
