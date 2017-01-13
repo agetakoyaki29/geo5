@@ -8,6 +8,8 @@ import geometry.dim2.{Dim2Factory, Dim2, Vector2}
 
 object Corner2 extends Dim2Factory[Corner2] {
   def apply(x: Double, y: Double): Corner2 = new Corner2(x, y)
+
+  def Whole: Corner2 = ???
 }
 
 
@@ -54,7 +56,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   def same(aabb: AABB2): Boolean = (aabb.center same O) && (this same aabb.corner)
 
-  // def aabb: AABB = AABB(O, this)
+  def aabb: AABB2 = this
 
   def isIntersectCircle2(circle: Circle2): Boolean = ???
   def intersectCircle2(circle: Circle2): Set[Point2] = ???
@@ -83,6 +85,8 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 object AABB2 {
   def apply(sp: Point2, corner: Corner2) = new AABB2(sp, corner)
   def apply(sp: Point2, ep: Point2) = new AABB2(sp, Corner2(sp to ep))
+
+  def Whole: AABB2 = ???
 
   implicit def corner2ToAABB2(corner: Corner2): AABB2 = AABB2(O, corner)
 }
@@ -131,6 +135,7 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
   def nearest(pt: Point2): Point2 = ???
 
   def same(aabb: AABB2): Boolean = ???
+  def aabb: AABB2 = ???
   def isIntersectCircle2(circle: Circle2): Boolean = ???
   def isIntersectAABB2(aabb: AABB2): Boolean = ???
   def intersectCircle2(circle: Circle2): Set[Point2] = ???
