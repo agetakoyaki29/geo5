@@ -57,16 +57,10 @@ class Dim2(_x: Double, val _y: Double) extends IndexedSeq[Double] with Dim {
 
   @UpRet def -(op: Dim2): Dim2 = zipmapD2(op) {_-_}
 
-  /**
-   * @param d NotInfinite(zero * inf = NaN)
-   */
-  @UpRet def *(d: Double): Dim2 = {
-    NotZero(d)
-    this mapD2 {_*d}
-  }
+  @UpRet def *(d: Double): Dim2 = this mapD2 {_*d}
 
   /**
-   * @param d NotZero(zero / zero = NaN, any / zero = inf)
+   * @param d NotZero(for zero / zero = NaN, any / zero = inf)
    */
   @UpRet def /(d: Double): Dim2 = {
     NotZero(d)
