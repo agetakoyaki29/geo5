@@ -35,6 +35,9 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def normal(op: Dir2): Boolean = this dotEq0 op
   def parallel(op: Dir2): Boolean = this crossEq0 op
 
+  def normal(line: Line2): Boolean = this dotEq0 line.dir
+  def parallel(line: Line2): Boolean = this crossEq0 line.dir
+
   /**
    * -pi ~ pi
    */
