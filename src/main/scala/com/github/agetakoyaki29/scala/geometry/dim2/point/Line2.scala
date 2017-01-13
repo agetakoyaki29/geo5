@@ -35,9 +35,6 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def normal(op: Dir2): Boolean = this dotEq0 op
   def parallel(op: Dir2): Boolean = this crossEq0 op
 
-  def normal(line: Line2): Boolean = this dotEq0 line.dir
-  def parallel(line: Line2): Boolean = this crossEq0 line.dir
-
   /**
    * -pi ~ pi
    */
@@ -151,27 +148,27 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
 
   // ---- copy from Dir2 ----
 
-  def align(idx: Int): Boolean = ???
-  def normalDir: Line2 = ???
-  def normal(op: Line2): Boolean = ???
-  def parallel(op: Line2): Boolean = ???
+  def align(idx: Int): Boolean = dir.align(idx)
+  def normalDir: Line2 = sp unto dir.normalDir
+  def normal(op: Line2): Boolean = dir.normal(op.dir)
+  def parallel(op: Line2): Boolean = dir.parallel(op.dir)
 
-  def angle: Double = ???
-  def angleTo(op: Line2): Double = ???
-  def cosTo(op: Line2): Double = ???
-  def sinTo(op: Line2): Double = ???
+  def angle: Double = dir.angle
+  def angleTo(op: Line2): Double = dir.angleTo(op.dir)
+  def cosTo(op: Line2): Double = dir.cosTo(op.dir)
+  def sinTo(op: Line2): Double = dir.sinTo(op.dir)
 
-  def inRegion1(pt: Point2): Boolean = ???
-  def inRegion2(pt: Point2): Boolean = ???
-  def through(pt: Point2): Boolean = ???
-  def containPoint2(pt: Point2): Boolean = ???
-  def distance(pt: Point2): Double = ???
-  def distanceSqr(pt: Point2): Double = ???
-  def nearest(pt: Point2): Point2 = ???
+  def inRegion1(pt: Point2): Boolean = dir.inRegion1(sp to pt)
+  def inRegion2(pt: Point2): Boolean = dir.inRegion2(sp to pt)
+  def through(pt: Point2): Boolean = dir.through(sp to pt)
+  def containPoint2(pt: Point2): Boolean = dir.containPoint2(sp to pt)
+  def distance(pt: Point2): Double = dir.distance(sp to pt)
+  def distanceSqr(pt: Point2): Double = dir.distanceSqr(sp to pt)
+  def nearest(pt: Point2): Point2 = sp unto dir.nearest(sp to pt)
 
-  def same(line: Line2): Boolean = ???
-  def isIntersectLine2(line: Line2): Boolean = ???
-  def isIntersectAABB2(aabb: AABB2): Boolean = ???
-  def intersectLine2(line: Line2): Set[Point2] = ???
-  def intersectAABB2(aabb: AABB2): Set[Point2] = ???
+  def same(line: Line2): Boolean = dir.same(sp to line)
+  def isIntersectLine2(line: Line2): Boolean = dir.isIntersectLine2(sp to line)
+  def isIntersectAABB2(aabb: AABB2): Boolean = dir.isIntersectAABB2(sp to aabb)
+  def intersectLine2(line: Line2): Set[Point2] = dir.intersectLine2(sp to line) map {sp unto _}
+  def intersectAABB2(aabb: AABB2): Set[Point2] = dir.intersectAABB2(sp to aabb) map {sp unto _}
 }
