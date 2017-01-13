@@ -112,6 +112,8 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 object Line2 {
   def apply(sp: Point2, dir: Dir2) = new Line2(sp, dir)
   def apply(sp: Point2, ep: Point2) = new Line2(sp, Dir2(sp to ep))
+
+  implicit def dir2ToLine2(dir: Dir2): Line2 = Line2(O, dir)
 }
 
 

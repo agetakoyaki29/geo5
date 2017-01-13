@@ -91,6 +91,8 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 object Circle2 {
   def apply(sp: Point2, range: Range2) = new Circle2(sp, range)
   def apply(sp: Point2, ep: Point2) = new Circle2(sp, Range2(sp to ep))
+
+  implicit def range2ToCircle2(range: Range2): Circle2 = Circle2(O, range)
 }
 
 

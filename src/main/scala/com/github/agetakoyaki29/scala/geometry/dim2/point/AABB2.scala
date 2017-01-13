@@ -83,6 +83,8 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 object AABB2 {
   def apply(sp: Point2, corner: Corner2) = new AABB2(sp, corner)
   def apply(sp: Point2, ep: Point2) = new AABB2(sp, Corner2(sp to ep))
+
+  implicit def corner2ToAABB2(corner: Corner2): AABB2 = AABB2(O, corner)
 }
 
 
