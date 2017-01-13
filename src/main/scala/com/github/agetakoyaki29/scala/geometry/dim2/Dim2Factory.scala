@@ -7,7 +7,7 @@ import geometry.DimFactory
 
 
 abstract class Dim2Factory[T <: Dim2 : ClassTag] extends DimFactory[T] {
-  final val Length: Int = 2
+  final def Length: Int = 2
 
   def apply(x: Double, y: Double): T
   def apply(op: Dim2): T = clone(op)
