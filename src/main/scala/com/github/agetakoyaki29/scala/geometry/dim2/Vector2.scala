@@ -24,19 +24,19 @@ class Vector2(_x: Double, _y: Double) extends Dim2(_x, _y) {
    */
   final def dot(op: Vector2): Double = zipmapD2(op) {_*_} sum
 
-  final def dotEq0(op: Vector2): Boolean = ???
-  final def dotGt0(op: Vector2): Boolean = ???
-  final def dotLt0(op: Vector2): Boolean = ???
+  final def dotEq0(op: Vector2): Boolean = x*op.x =~ - y*op.y
+  final def dotGt0(op: Vector2): Boolean = x*op.x >~ - y*op.y
+  final def dotLt0(op: Vector2): Boolean = x*op.x <~ - y*op.y
 
   /**
    * return No 3 elem of cross
    * Vector3(this) cross Vector3(op) apply 2
    */
-  final def cross(op: Vector2): Double = ???
+  final def cross(op: Vector2): Double = x*op.y - y*op.x
 
-  final def crossEq0(op: Vector2): Boolean = ???
-  final def crossGt0(op: Vector2): Boolean = ???
-  final def crossLt0(op: Vector2): Boolean = ???
+  final def crossEq0(op: Vector2): Boolean = x*op.y =~ y*op.x
+  final def crossGt0(op: Vector2): Boolean = x*op.y >~ y*op.x
+  final def crossLt0(op: Vector2): Boolean = x*op.y <~ y*op.x
 
   // ---- UpRet ----
 

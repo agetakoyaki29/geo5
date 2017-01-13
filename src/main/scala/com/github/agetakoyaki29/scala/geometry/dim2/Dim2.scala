@@ -29,18 +29,18 @@ class Dim2(_x: Double, val _y: Double) extends IndexedSeq[Double] with Dim {
   // ---- for IndexedSeq ----
 
   override final def foreach[U](f: Double => U): Unit = {f(x); f(y)}
-  final def apply(index: Int): Double = index match { case 0 => x case 1 => y }
+  final def apply(idx: Int): Double = idx match { case 0 => x case 1 => y }
   final def length: Int = 2
 
   // ---- from IndexedSeq ----
 
-  final def indicesOther(index: Int) = Dim2.Other(index)
+  final def indicesOther(idx: Int) = Dim2.Other(idx)
 
   final def zipmap[B](op: Dim2)(f: (Double, Double) => B): IndexedSeq[B] = this zip op map { (tup: (Double, Double)) => f(tup._1, tup._2) }
 
   @UpRet def reverseD2: Dim2 = factory(super.reverse)
 
-  @UpRet def updatedD2(index: Int, elem: Double): Dim2 = factory(super.updated(index, elem))
+  @UpRet def updatedD2(idx: Int, elem: Double): Dim2 = factory(super.updated(idx, elem))
 
   @UpRet def mapD2(f: Double => Double): Dim2 = factory(super.map(f))
 
