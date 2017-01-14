@@ -21,9 +21,9 @@ trait DimFactory[T <: Dim] {
 
   // ---- for validation ----
 
-  def NotNaN:      T => T = dim => { require(! dim.isNaN,      "required not NaN " + dim.getClass.getSimpleName);      dim }
-  def NotInfinite: T => T = dim => { require(! dim.isInfinite, "required not Infinite " + dim.getClass.getSimpleName); dim }
-  def NotZero:     T => T = dim => { require(! dim.isZero,     "required not Zero " + dim.getClass.getSimpleName);     dim }
+  def NotNaN:      T => T = dim => { require(! dim.isNaN,      "not NaN " + dim.getClass.getSimpleName);      dim }
+  def NotInfinite: T => T = dim => { require(! dim.isInfinite, "not Infinite " + dim.getClass.getSimpleName); dim }
+  def NotZero:     T => T = dim => { require(! dim.isZero,     "not Zero " + dim.getClass.getSimpleName);     dim }
   def Identity:    T => T = identity
 
 }
