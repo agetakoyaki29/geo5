@@ -37,7 +37,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
   // def slabsOther(idx: Int): Seq[Slab] = indicesOther(idx) map {slab _}
   // def slabs: Seq[Slab] = indices map {slab _}
 
-  def isConcentric(aabb: AABB2): Boolean = center same aabb.center
+  def isConcentric(aabb: AABB2): Boolean = center samePoint2 aabb.center
 
   // ---- figure to point ----
 
@@ -52,9 +52,9 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   // ---- figure to other figure ----
 
-  def same(op: Corner2): Boolean = Point2(this) same Point2(op)
+  def sameCorner2(op: Corner2): Boolean = this.zipmap(op) {_=~_} reduce {_&&_}
 
-  def same(aabb: AABB2): Boolean = (aabb.center same O) && (this same aabb.corner)
+  def sameAABB2(aabb: AABB2): Boolean = (this isConcentric aabb) && (this sameCorner2 aabb.corner)
 
   def aabb: AABB2 = this
 
@@ -134,7 +134,7 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
   def distanceSqr(pt: Point2): Double = ???
   def nearest(pt: Point2): Point2 = ???
 
-  def same(aabb: AABB2): Boolean = ???
+  def sameAABB2(aabb: AABB2): Boolean = ???
   def aabb: AABB2 = ???
   def isIntersectCircle2(circle: Circle2): Boolean = ???
   def isIntersectAABB2(aabb: AABB2): Boolean = ???

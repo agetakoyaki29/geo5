@@ -74,9 +74,9 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   // ---- figure to other figure ----
 
-  def same(op: Dir2): Boolean = this parallel op
+  def sameDir2(op: Dir2): Boolean = this parallel op
 
-  def same(line: Line2): Boolean = (this through line.sp) && (this same line.dir)
+  def sameLine2(line: Line2): Boolean = (this through line.sp) && (this sameDir2 line.dir)
 
   def aabb: AABB2 = AABB2.Whole
 
@@ -170,7 +170,7 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
   def distanceSqr(pt: Point2): Double = dir.distanceSqr(pt from sp)
   def nearest(pt: Point2): Point2 = dir.nearest(pt from sp) unfrom sp
 
-  def same(line: Line2): Boolean = dir.same(line from sp)
+  def sameLine2(line: Line2): Boolean = dir.sameLine2(line from sp)
   def aabb: AABB2 = dir.aabb unfrom sp
   def isIntersectLine2(line: Line2): Boolean = dir.isIntersectLine2(line from sp)
   def isIntersectAABB2(aabb: AABB2): Boolean = dir.isIntersectAABB2(aabb from sp)

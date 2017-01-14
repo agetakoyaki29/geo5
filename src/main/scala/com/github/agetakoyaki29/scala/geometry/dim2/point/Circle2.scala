@@ -27,7 +27,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   def center: Point2 = O
 
-  def isConcentric(circle: Circle2): Boolean = center same circle.center
+  def isConcentric(circle: Circle2): Boolean = center samePoint2 circle.center
 
   def radicalLine(circle: Circle2): Line2 = {
     if(!(this isConcentric circle)) throw new IllegalArgumentException("required not concentric circle")
@@ -49,9 +49,9 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   // ---- figure to other figure ----
 
-  def same(op: Range2): Boolean = this.powerSqr =~ op.powerSqr
+  def sameRange2(op: Range2): Boolean = this.powerSqr =~ op.powerSqr
 
-  def same(circle: Circle2): Boolean = (this isConcentric circle) && (this same circle.range)
+  def sameCircle2(circle: Circle2): Boolean = (this isConcentric circle) && (this sameRange2 circle.range)
 
   def aabb: AABB2 = AABB2(O, Corner2(this))
 
@@ -137,7 +137,7 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
   def distanceSqr(pt: Point2): Double = range.distanceSqr(pt from sp)
   def nearest(pt: Point2): Point2 = range.nearest(pt from sp) unfrom sp
 
-  def same(circle: Circle2): Boolean = range.same(circle from sp)
+  def sameCircle2(circle: Circle2): Boolean = range.sameCircle2(circle from sp)
   def aabb: AABB2 = range.aabb unfrom sp
   def isIntersectLine2(line: Line2): Boolean = range.isIntersectLine2(line from sp)
   def isIntersectCircle2(circle: Circle2): Boolean = range.isIntersectCircle2(circle from sp)
