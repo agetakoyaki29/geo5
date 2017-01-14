@@ -141,6 +141,6 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
   def aabb: AABB2 = sp unto range.aabb
   def isIntersectLine2(line: Line2): Boolean = sp conjugate range.isIntersectLine2 apply line
   def isIntersectCircle2(circle: Circle2): Boolean = sp conjugate range.isIntersectCircle2 apply circle
-  def intersectLine2(line: Line2): Set[Point2] = sp conjugate range.intersectLine2 apply line
-  def intersectCircle2(circle: Circle2): Set[Point2] = sp conjugate range.intersectCircle2 apply circle
+  def intersectLine2(line: Line2): Set[Point2] = range.intersectLine2(line from sp) map {_ unfrom sp}
+  def intersectCircle2(circle: Circle2): Set[Point2] = range.intersectCircle2(circle from sp) map {_ unfrom sp}
 }
