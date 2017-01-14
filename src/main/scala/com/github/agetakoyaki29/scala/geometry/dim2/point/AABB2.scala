@@ -58,8 +58,8 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   def aabb: AABB2 = this
 
-  def isIntersectCircle2(circle: Circle2): Boolean = ???
-  def intersectCircle2(circle: Circle2): Set[Point2] = ???
+  // def isIntersectCircle2(circle: Circle2): Boolean = ???
+  // def intersectCircle2(circle: Circle2): Set[Point2] = ???
 
   def isIntersectAABB2(aabb: AABB2): Boolean = ???
   def intersectAABB2(aabb: AABB2): Set[Point2] = ???
@@ -108,13 +108,11 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
   // ---- for Figure2 ----
 
   def isIntersect(op: Figure2): Boolean = op match {
-    case circle: Circle2 => this isIntersectCircle2 circle
     case aabb: AABB2     => this isIntersectAABB2 aabb
     case _ => op isIntersect this
   }
 
   def intersect(op: Figure2): Set[Point2] = op match {
-    case circle: Circle2 => this intersectCircle2 circle
     case aabb: AABB2     => this intersectAABB2 aabb
     case _ => op intersect this
   }
@@ -136,8 +134,6 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
 
   def sameAABB2(aabb: AABB2): Boolean = sp conjugate corner.sameAABB2 apply aabb
   def aabb: AABB2 = sp unto corner.aabb
-  def isIntersectCircle2(circle: Circle2): Boolean = sp conjugate corner.isIntersectCircle2 apply circle
   def isIntersectAABB2(aabb: AABB2): Boolean = sp conjugate corner.isIntersectAABB2 apply aabb
-  def intersectCircle2(circle: Circle2): Set[Point2] = corner.intersectCircle2(circle from sp) map {_ unfrom sp}
   def intersectAABB2(aabb: AABB2): Set[Point2] = corner.intersectAABB2(aabb from sp) map {_ unfrom sp}
 }
