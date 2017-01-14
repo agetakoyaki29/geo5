@@ -125,22 +125,22 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
 
   // ---- copy from Range2 ----
 
-  def power: Double = range.power
-  def powerSqr: Double = range.powerSqr
-  def center: Point2 = range.center unfrom sp
-  def isConcentric(circle: Circle2): Boolean = range.isConcentric(circle from sp)
-  def radicalLine(circle: Circle2): Line2 = range.radicalLine(circle from sp) unfrom sp
+  def power: Double = sp unto range.power
+  def powerSqr: Double = sp unto range.powerSqr
+  def center: Point2 = sp unto range.center
+  def isConcentric(circle: Circle2): Boolean = sp conjugate range.isConcentric apply circle
+  def radicalLine(circle: Circle2): Line2 = sp conjugate range.radicalLine apply circle
 
-  def through(pt: Point2): Boolean = range.through(pt from sp)
-  def containPoint2(pt: Point2): Boolean = range.containPoint2(pt from sp)
-  def distance(pt: Point2): Double = range.distance(pt from sp)
-  def distanceSqr(pt: Point2): Double = range.distanceSqr(pt from sp)
-  def nearest(pt: Point2): Point2 = range.nearest(pt from sp) unfrom sp
+  def through(pt: Point2): Boolean = sp conjugate range.through apply pt
+  def containPoint2(pt: Point2): Boolean = sp conjugate range.containPoint2 apply pt
+  def distance(pt: Point2): Double = sp conjugate range.distance apply pt
+  def distanceSqr(pt: Point2): Double = sp conjugate range.distanceSqr apply pt
+  def nearest(pt: Point2): Point2 = sp conjugate range.nearest apply pt
 
-  def sameCircle2(circle: Circle2): Boolean = range.sameCircle2(circle from sp)
-  def aabb: AABB2 = range.aabb unfrom sp
-  def isIntersectLine2(line: Line2): Boolean = range.isIntersectLine2(line from sp)
-  def isIntersectCircle2(circle: Circle2): Boolean = range.isIntersectCircle2(circle from sp)
-  def intersectLine2(line: Line2): Set[Point2] = range.intersectLine2(line from sp) map {sp unto _}
-  def intersectCircle2(circle: Circle2): Set[Point2] = range.intersectCircle2(circle from sp) map {sp unto _}
+  def sameCircle2(circle: Circle2): Boolean = sp conjugate range.sameCircle2 apply circle
+  def aabb: AABB2 = sp unto range.aabb
+  def isIntersectLine2(line: Line2): Boolean = sp conjugate range.isIntersectLine2 apply line
+  def isIntersectCircle2(circle: Circle2): Boolean = sp conjugate range.isIntersectCircle2 apply circle
+  def intersectLine2(line: Line2): Set[Point2] = sp conjugate range.intersectLine2 apply line
+  def intersectCircle2(circle: Circle2): Set[Point2] = sp conjugate range.intersectCircle2 apply circle
 }

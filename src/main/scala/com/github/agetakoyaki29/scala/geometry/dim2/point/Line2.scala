@@ -150,30 +150,31 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
 
   def normalDir: Line2 = normalDir(O)
   def normalDir(at: Point2): Line2 = Line2(this nearest at, dir.normalDir)
-  def normal(op: Line2): Boolean = dir.normal(op.dir)
-  def parallel(op: Line2): Boolean = dir.parallel(op.dir)
-  def angleTo(op: Line2): Double = dir.angleTo(op.dir)
-  def cosTo(op: Line2): Double = dir.cosTo(op.dir)
-  def sinTo(op: Line2): Double = dir.sinTo(op.dir)
+
+  def normal(op: Line2): Boolean = sp conjugate dir.normal apply op.dir
+  def parallel(op: Line2): Boolean = sp conjugate dir.parallel apply op.dir
+  def angleTo(op: Line2): Double = sp conjugate dir.angleTo apply op.dir
+  def cosTo(op: Line2): Double = sp conjugate dir.cosTo apply op.dir
+  def sinTo(op: Line2): Double = sp conjugate dir.sinTo apply op.dir
 
   // ---- copy from Dir2 ----
 
-  def align(idx: Int): Boolean = dir.align(idx)
+  def align(idx: Int): Boolean = sp conjugate dir.align apply idx
 
-  def angle: Double = dir.angle
+  def angle: Double = sp unto dir.angle
 
-  def inRegion1(pt: Point2): Boolean = dir.inRegion1(pt from sp)
-  def inRegion2(pt: Point2): Boolean = dir.inRegion2(pt from sp)
-  def through(pt: Point2): Boolean = dir.through(pt from sp)
-  def containPoint2(pt: Point2): Boolean = dir.containPoint2(pt from sp)
-  def distance(pt: Point2): Double = dir.distance(pt from sp)
-  def distanceSqr(pt: Point2): Double = dir.distanceSqr(pt from sp)
-  def nearest(pt: Point2): Point2 = dir.nearest(pt from sp) unfrom sp
+  def inRegion1(pt: Point2): Boolean = sp conjugate dir.inRegion1 apply pt
+  def inRegion2(pt: Point2): Boolean = sp conjugate dir.inRegion2 apply pt
+  def through(pt: Point2): Boolean = sp conjugate dir.through apply pt
+  def containPoint2(pt: Point2): Boolean = sp conjugate dir.containPoint2 apply pt
+  def distance(pt: Point2): Double = sp conjugate dir.distance apply pt
+  def distanceSqr(pt: Point2): Double = sp conjugate dir.distanceSqr apply pt
+  def nearest(pt: Point2): Point2 = sp conjugate dir.nearest apply pt
 
-  def sameLine2(line: Line2): Boolean = dir.sameLine2(line from sp)
-  def aabb: AABB2 = dir.aabb unfrom sp
-  def isIntersectLine2(line: Line2): Boolean = dir.isIntersectLine2(line from sp)
-  def isIntersectAABB2(aabb: AABB2): Boolean = dir.isIntersectAABB2(aabb from sp)
+  def sameLine2(line: Line2): Boolean = sp conjugate dir.sameLine2 apply line
+  def aabb: AABB2 = sp unto dir.aabb
+  def isIntersectLine2(line: Line2): Boolean = sp conjugate dir.isIntersectLine2 apply line
+  def isIntersectAABB2(aabb: AABB2): Boolean = sp conjugate dir.isIntersectAABB2 apply aabb
   def intersectLine2(line: Line2): Set[Point2] = dir.intersectLine2(line from sp) map {_ unfrom sp}
   def intersectAABB2(aabb: AABB2): Set[Point2] = dir.intersectAABB2(aabb from sp) map {_ unfrom sp}
 }

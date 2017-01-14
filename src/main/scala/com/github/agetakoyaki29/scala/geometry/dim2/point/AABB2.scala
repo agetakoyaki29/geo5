@@ -121,23 +121,23 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
 
   // ---- copy from Corner2 ----
 
-  def center: Point2 = ???
-  def minmin: Point2 = ???
-  def minmax: Point2 = ???
-  def maxmin: Point2 = ???
-  def maxmax: Point2 = ???
-  def isConcentric(aabb: AABB2): Boolean = ???
+  def center: Point2 = sp unto corner.center
+  def minmin: Point2 = sp unto corner.minmin
+  def minmax: Point2 = sp unto corner.minmax
+  def maxmin: Point2 = sp unto corner.maxmin
+  def maxmax: Point2 = sp unto corner.maxmax
+  def isConcentric(aabb: AABB2): Boolean = sp conjugate corner.isConcentric apply aabb
 
-  def through(pt: Point2): Boolean = ???
-  def containPoint2(pt: Point2): Boolean = ???
-  def distance(pt: Point2): Double = ???
-  def distanceSqr(pt: Point2): Double = ???
-  def nearest(pt: Point2): Point2 = ???
+  def through(pt: Point2): Boolean = sp conjugate corner.through apply pt
+  def containPoint2(pt: Point2): Boolean = sp conjugate corner.containPoint2 apply pt
+  def distance(pt: Point2): Double = sp conjugate corner.distance apply pt
+  def distanceSqr(pt: Point2): Double = sp conjugate corner.distanceSqr apply pt
+  def nearest(pt: Point2): Point2 = sp conjugate corner.nearest apply pt
 
-  def sameAABB2(aabb: AABB2): Boolean = ???
-  def aabb: AABB2 = ???
-  def isIntersectCircle2(circle: Circle2): Boolean = ???
-  def isIntersectAABB2(aabb: AABB2): Boolean = ???
-  def intersectCircle2(circle: Circle2): Set[Point2] = ???
-  def intersectAABB2(aabb: AABB2): Set[Point2] = ???
+  def sameAABB2(aabb: AABB2): Boolean = sp conjugate corner.sameAABB2 apply aabb
+  def aabb: AABB2 = sp unto corner.aabb
+  def isIntersectCircle2(circle: Circle2): Boolean = sp conjugate corner.isIntersectCircle2 apply circle
+  def isIntersectAABB2(aabb: AABB2): Boolean = sp conjugate corner.isIntersectAABB2 apply aabb
+  def intersectCircle2(circle: Circle2): Set[Point2] = corner.intersectCircle2(circle from sp) map {_ unfrom sp}
+  def intersectAABB2(aabb: AABB2): Set[Point2] = corner.intersectAABB2(aabb from sp) map {_ unfrom sp}
 }
