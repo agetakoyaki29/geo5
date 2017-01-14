@@ -41,9 +41,9 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   // ---- figure to point ----
 
-  def through(pt: Point2): Boolean = ???//for(border <- borders) if(border through pt) bordersOther(border) map {_ containPoint2 pt} reduce {_&&_}
+  def through(pt: Point2): Boolean = ???//for(border <- borders) if(border through pt) bordersOther(border) map {_ containPoint2 pt} forall identity
 
-  def containPoint2(pt: Point2): Boolean = ???//borders map {_.containPoint2} reduce {_&&_}
+  def containPoint2(pt: Point2): Boolean = ???//borders map {_.containPoint2} forall identity
 
   def distance(pt: Point2): Double = ???
   def distanceSqr(pt: Point2): Double = ???
@@ -52,7 +52,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   // ---- figure to other figure ----
 
-  def sameCorner2(op: Corner2): Boolean = this.zipmap(op) {_=~_} reduce {_&&_}
+  def sameCorner2(op: Corner2): Boolean = this.zipmap(op) {_=~_} forall identity
 
   def sameAABB2(aabb: AABB2): Boolean = (this isConcentric aabb) && (this sameCorner2 aabb.corner)
 
