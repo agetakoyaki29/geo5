@@ -30,7 +30,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def isConcentric(circle: Circle2): Boolean = center samePoint2 circle.center
 
   def radicalLine(circle: Circle2): Line2 = {
-    if(!(this isConcentric circle)) throw new IllegalArgumentException("required not concentric circle")
+    require(this isConcentric circle, "required not concentric circle")
     val opcenter = circle.center
     val radicalPoint = opcenter * ( ((this.powerSqr-circle.powerSqr)/opcenter.normSqr + 1) / 2 )
     Line2(radicalPoint, Dir2(opcenter).normalDir)
