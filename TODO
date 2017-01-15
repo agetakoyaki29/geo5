@@ -1,2 +1,9 @@
 
 * object func naming
+Whole
+Zero
+O
+
+* use a zip b map {...}.tupled instead of zipmap
+remove zipmap, using Function2 tupled
+implicit def f2Tof1

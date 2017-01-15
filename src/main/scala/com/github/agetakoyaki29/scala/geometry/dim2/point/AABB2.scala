@@ -41,14 +41,35 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   // ---- figure to point ----
 
-  def through(pt: Point2): Boolean = ???//for(border <- borders) if(border through pt) bordersOther(border) map {_ containPoint2 pt} forall identity
+  def through(pt: Point2): Boolean = {
+    if(pt.x.abs =~ x) pt.y.abs <~ y else
+    if(pt.y.abs =~ y) pt.x.abs <~ x else
+    false
+  }
 
-  def containPoint2(pt: Point2): Boolean = ???//borders map {_.containPoint2} forall identity
+  def containPoint2(pt: Point2): Boolean = this.zipmap(pt.abs) {_>~_} forall identity
 
-  def distance(pt: Point2): Double = ???
-  def distanceSqr(pt: Point2): Double = ???
+  def distance(pt: Point2): Double = distanceSqr(pt).sqrt
+  def distanceSqr(pt: Point2): Double = {
+    val distance = this - pt.abs
+    if(distance forall {_ >= 0}) distance.min.sqr
+    else distance filterNot {_ >= 0} map {_.sqr} sum
+  }
 
-  def nearest(pt: Point2): Point2 = ???
+  def nearest(pt: Point2): Point2 = {
+    def toIdxMap(seq: Seq[Double]): Map[Int, Double] = (seq.indices zip seq).toMap
+    val distance = this - pt.abs
+    val ideaMap = toIdxMap(this.zipmap(pt) {_ copySign _})
+    if(distance forall {_ >= 0}) {
+      val minElem = toIdxMap(distance) minBy {_._2}
+      val update = ideaMap -- (ideaMap.keySet -  minElem._1)
+      (pt /: update) {(p, t) => (p.updatedD2 _).tupled(t)}  // (pt /: update) {_ updated _}
+    } else {
+      val outMap = toIdxMap(distance) filterNot {_._2 >= 0}
+      val update = ideaMap -- (ideaMap.keySet &~ outMap.keySet)
+      (pt /: update) {(p, t) => (p.updatedD2 _).tupled(t)}  // (pt /: update) {_ updated _}
+    }
+  }
 
   // ---- figure to other figure ----
 
