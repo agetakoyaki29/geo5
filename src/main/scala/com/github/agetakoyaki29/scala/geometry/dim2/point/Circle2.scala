@@ -53,7 +53,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   def sameCircle2(circle: Circle2): Boolean = (this isConcentric circle) && (this sameRange2 circle.range)
 
-  def aabb: AABB2 = AABB2(O, Corner2(this))
+  def aabb: AABB2 = AABB2(O, Corner2(norm, norm))
 
   def isIntersectLine2(line: Line2): Boolean = this.powerSqr >~ (line distanceSqr O)
   def intersectLine2(line: Line2): Set[Point2] = {
