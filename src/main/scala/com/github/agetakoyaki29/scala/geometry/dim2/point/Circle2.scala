@@ -68,7 +68,10 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   }
 
   def isIntersectCircle2(circle: Circle2): Boolean = (this.power + circle.power) >~ circle.center.norm
-  def intersectCircle2(circle: Circle2): Set[Point2] = this intersectLine2 (this radicalLine circle)
+  def intersectCircle2(circle: Circle2): Set[Point2] = {
+    if(this isConcentric circle) Set()
+    else this intersectLine2 (this radicalLine circle)
+  }
 
   // ---- UpRet ----
 
