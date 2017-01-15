@@ -61,7 +61,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
     if(!(this containPoint2 nearest)) Set()
     else if(this through nearest) Set(nearest)  // not need if Set work correctly
     else {
-      val sine = this.normSqr - nearest.normSqr
+      val sine = (this.normSqr - nearest.normSqr).sqrt
       val diff = line.dir.normalized * sine
       Set(nearest+diff, nearest-diff)
     }
