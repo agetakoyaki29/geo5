@@ -128,6 +128,17 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
     case _ => op intersect this
   }
 
+  // ---- std ----
+
+  override def toString: String = s"Circle2($sp, $range)"
+
+  override def equals(op: Any) = op match {
+    case circle: Circle2 => sp == circle.sp && range == circle.range
+    case _ => false
+  }
+
+  override def hashCode: Int = 32*sp.## + range.##
+
   // ---- copy from Range2 ----
 
   def power: Double = sp unto range.power

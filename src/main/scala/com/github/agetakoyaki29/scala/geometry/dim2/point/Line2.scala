@@ -151,6 +151,17 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
     case _ => op intersect this
   }
 
+  // ---- std ----
+
+  override def toString: String = s"Line2($sp, $dir)"
+
+  override def equals(op: Any) = op match {
+    case line: Line2 => sp == line.sp && dir == line.dir
+    case _ => false
+  }
+
+  override def hashCode: Int = 32*sp.## + dir.##
+
   // ----
 
   def normalDir: Line2 = normalDir(O)

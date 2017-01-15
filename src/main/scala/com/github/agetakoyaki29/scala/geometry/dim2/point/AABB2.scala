@@ -143,6 +143,17 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
     case _ => op intersect this
   }
 
+  // ---- std ----
+
+  override def toString: String = s"AABB2($sp, $corner)"
+
+  override def equals(op: Any) = op match {
+    case aabb: AABB2 => sp == aabb.sp && corner == aabb.corner
+    case _ => false
+  }
+
+  override def hashCode: Int = 32*sp.## + corner.##
+
   // ---- copy from Corner2 ----
 
   def center: Point2 = sp unto corner.center
