@@ -134,6 +134,11 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
 
   // ---- for Figure2 ----
 
+  def same(any: Any): Boolean = any match {
+    case line: Line2 => this sameLine2 line
+    case _ => false
+  }
+
   def isIntersect(op: Figure2): Boolean = op match {
     case line: Line2 => this isIntersectLine2 line
     case aabb: AABB2 => this isIntersectAABB2 aabb

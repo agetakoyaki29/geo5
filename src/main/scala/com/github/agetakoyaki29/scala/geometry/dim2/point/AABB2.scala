@@ -128,6 +128,11 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
 
   // ---- for Figure2 ----
 
+  def same(any: Any): Boolean = any match {
+    case aabb: AABB2 => this sameAABB2 aabb
+    case _ => false
+  }
+
   def isIntersect(op: Figure2): Boolean = op match {
     case aabb: AABB2     => this isIntersectAABB2 aabb
     case _ => op isIntersect this

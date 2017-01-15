@@ -111,6 +111,11 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
 
   // ---- for Figure2 ----
 
+  def same(any: Any): Boolean = any match {
+    case circle: Circle2 => this sameCircle2 circle
+    case _ => false
+  }
+
   def isIntersect(op: Figure2): Boolean = op match {
     case line: Line2 => this isIntersectLine2 line
     case circle: Circle2 => this isIntersectCircle2 circle
