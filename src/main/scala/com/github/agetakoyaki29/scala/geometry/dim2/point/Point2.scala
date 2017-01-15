@@ -43,7 +43,7 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
   def to[A : ClassTag](any: A): A = {
     case class TransA(val trans: Trans2[A])
     any match {
-      case TransA(trans) => trans from this
+      case trans: Trans2[A] => trans from this
       case any => any
     }
   }
@@ -52,7 +52,7 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
   def unto[A : ClassTag](any: A): A = {
     case class TransA(val trans: Trans2[A])
     any match {
-      case TransA(trans) => trans unfrom this
+      case trans: Trans2[A] => trans unfrom this
       case any => any
     }
   }
