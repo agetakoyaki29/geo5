@@ -45,7 +45,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def distance(pt: Point2): Double = (pt.norm - this.norm).abs
   def distanceSqr(pt: Point2): Double = distance(pt).sqr
 
-  def nearest(pt: Point2): Point2 = pt * (this.norm / pt.norm)
+  def nearest(pt: Point2): Point2 = pt * (this.norm / pt.norm)  // TODO if O
 
   // ---- figure to other figure ----
 
@@ -54,6 +54,9 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def sameCircle2(circle: Circle2): Boolean = (this isConcentric circle) && (this sameRange2 circle.range)
 
   def aabb: AABB2 = AABB2(O, Corner2(norm, norm))
+
+  def containCircle2(circle: Circle2): Boolean    = this.power >~ circle.center.norm + circle.power
+  def notContainCircle2(circle: Circle2): Boolean = this.power <~ circle.center.norm - circle.power
 
   def isIntersectLine2(line: Line2): Boolean = this.powerSqr >~ (line distanceSqr O)
   def intersectLine2(line: Line2): Set[Point2] = {
@@ -67,7 +70,9 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
     }
   }
 
-  def isIntersectCircle2(circle: Circle2): Boolean = (this.power + circle.power) >~ circle.center.norm
+  def isIntersectCircle2(circle: Circle2): Boolean =
+    (this isConcentric circle) ||
+    (this.power - circle.center.norm).abs <~ circle.power // circle contain (circle nearest O)
   def intersectCircle2(circle: Circle2): Set[Point2] = {
     if(this isConcentric circle) Set()
     else this intersectLine2 (this radicalLine circle)
