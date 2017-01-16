@@ -141,9 +141,9 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
   }
 
   def contain(op: Figure2): Boolean = op match {
-    case line: Line2 => ???
-    case circle: Circle2 => ???
-    case aabb: AABB2 => ???
+    case line: Line2 => !(this isIntersect line) && (this containPoint2 line.sp)
+    case circle: Circle2 => (this containPoint2 circle.center) && ((this distanceSqr circle.center) <~ circle.powerSqr)
+    case aabb: AABB2 => aabb.points map {this containPoint2 _} forall identity
   }
 
   def isIntersect(op: Figure2): Boolean = op match {

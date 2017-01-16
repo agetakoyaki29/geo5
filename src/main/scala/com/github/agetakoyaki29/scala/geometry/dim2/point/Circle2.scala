@@ -126,9 +126,9 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
   }
 
   def contain(op: Figure2): Boolean = op match {
-    case line: Line2 => ???
-    case circle: Circle2 => ???
-    case aabb: AABB2 => ???
+    case line: Line2 => false
+    case circle: Circle2 => this containCircle2 circle
+    case aabb: AABB2 => aabb.points map {this containPoint2 _} forall identity
   }
 
   def isIntersect(op: Figure2): Boolean = op match {
@@ -164,6 +164,7 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
 
   def through(pt: Point2): Boolean = sp conjugate range.through apply pt
   def containPoint2(pt: Point2): Boolean = sp conjugate range.containPoint2 apply pt
+  def containCircle2(circle: Circle2): Boolean = sp conjugate range.containCircle2 apply circle
   def distance(pt: Point2): Double = sp conjugate range.distance apply pt
   def distanceSqr(pt: Point2): Double = sp conjugate range.distanceSqr apply pt
   def nearest(pt: Point2): Point2 = sp conjugate range.nearest apply pt
