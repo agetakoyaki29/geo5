@@ -25,6 +25,8 @@ class DoubleTest extends DoubleSpec {
     assert(NegativeZero isNegativeZero)
   }
 
+  // isPos, Neg
+
   "PositiveInfinity is opposite NegativeInfinity (but add => NaN)" in {
     assert(PositiveInfinity === -NegativeInfinity)
     assert(NegativeInfinity === -PositiveInfinity)
