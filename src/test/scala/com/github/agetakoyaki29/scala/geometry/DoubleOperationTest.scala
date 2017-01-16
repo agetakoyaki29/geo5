@@ -41,23 +41,16 @@ class DoubleOperationTest extends DoubleSpec {
       assert((PositiveInfinity / NegativeInfinity).isNaN)
       assert((NegativeInfinity / PositiveInfinity).isNaN)
     }
-    "any(non Inf) / Inf === Zero" in {  // TODO sign
-      assert((PositiveDouble / PositiveInfinity).isZero)
-      assert((NegativeDouble / NegativeInfinity).isZero)
-      assert((PositiveDouble / NegativeInfinity).isZero)
-      assert((NegativeDouble / PositiveInfinity).isZero)
-      // assert((PositiveDouble / PositiveInfinity).isPositiveZero)
-      // assert((NegativeDouble / NegativeInfinity).isPositiveZero)
-      // assert((PositiveDouble / NegativeInfinity).isNegativeZero)
-      // assert((NegativeDouble / PositiveInfinity).isNegativeZero)
-      assert((PositiveZero / PositiveInfinity).isZero)
-      assert((NegativeZero / NegativeInfinity).isZero)
-      assert((PositiveZero / NegativeInfinity).isZero)
-      assert((NegativeZero / PositiveInfinity).isZero)
-      // assert((PositiveZero / PositiveInfinity).isPositiveZero)
-      // assert((NegativeZero / NegativeInfinity).isPositiveZero)
-      // assert((PositiveZero / NegativeInfinity).isNegativeZero)
-      // assert((NegativeZero / PositiveInfinity).isNegativeZero)
+    "any(non Inf) / Inf === Zero" in {
+      assert((PositiveDouble / PositiveInfinity).isPositiveZero)
+      assert((NegativeDouble / NegativeInfinity).isPositiveZero)
+      assert((PositiveDouble / NegativeInfinity).isNegativeZero)
+      assert((NegativeDouble / PositiveInfinity).isNegativeZero)
+
+      assert((PositiveZero / PositiveInfinity).isPositiveZero)
+      assert((NegativeZero / NegativeInfinity).isPositiveZero)
+      assert((PositiveZero / NegativeInfinity).isNegativeZero)
+      assert((NegativeZero / PositiveInfinity).isNegativeZero)
     }
     "Zero / Zero isNaN" in {
       assert((PositiveZero / PositiveZero).isNaN)

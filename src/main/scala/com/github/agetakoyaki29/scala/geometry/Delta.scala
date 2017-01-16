@@ -26,14 +26,15 @@ object Delta {
   val MaxExponent = java.lang.Double.MAX_EXPONENT
   val MinExponent = java.lang.Double.MIN_EXPONENT
 
-  def sign(boolean: Boolean): Int = if(boolean) 1 else -1
+  // def sign(boolean: Boolean): Int = if(boolean) 1 else -1
 
   def minus(double: Double): Double = -double
 
-  def isPositive(double: Double): Boolean = ??? // PositiveZero, NegativeZero
+  def isPositive(double: Double): Boolean = double.toLongBits >>> 63 == 0
   def isNegative(double: Double): Boolean = ! isPositive(double)
 
-  // def isPositiveInfinite(double: Double): Boolean
+  def isPositiveInfinite(double: Double): Boolean = double.isPositive && double.isInfinite
+  def isNegativeInfinite(double: Double): Boolean = double.isNegative && double.isInfinite
 
   def log2(double: Double): Double = log(double, 2)   // FIXME fast, rounded, check special double
 
@@ -76,9 +77,9 @@ object Delta {
 
   // ---- RichBoolean ----
 
-  implicit class RichBoolean(val that: Boolean) {
-    def sign: Int = Delta.sign(that)
-  }
+  // implicit class RichBoolean(val that: Boolean) {
+  //   def sign: Int = Delta.sign(that)
+  // }
 
   // ---- RichDouble ----
 
@@ -93,6 +94,8 @@ object Delta {
     def minus: Double = Delta.minus(that)
     def isPositive: Boolean = Delta.isPositive(that)
     def isNegative: Boolean = Delta.isNegative(that)
+    def isPositiveInfinite: Boolean = Delta.isPositiveInfinite(that)
+    def isNegativeInfinite: Boolean = Delta.isNegativeInfinite(that)
     def isPositiveZero: Boolean = Delta.isPositiveZero(that)
     def isNegativeZero: Boolean = Delta.isNegativeZero(that)
     def isZero: Boolean = Delta.isZero(that)
