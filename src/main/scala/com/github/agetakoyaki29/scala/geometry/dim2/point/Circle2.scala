@@ -49,11 +49,12 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   // ---- figure to other figure ----
 
-  def sameRange2(op: Range2): Boolean = this.powerSqr =~ op.powerSqr
-
-  def sameCircle2(circle: Circle2): Boolean = (this isConcentric circle) && (this sameRange2 circle.range)
+  def points: Set[Point2] = Set(O, Point2(this))
 
   def aabb: AABB2 = AABB2(O, Corner2(norm, norm))
+
+  def sameRange2(op: Range2): Boolean = this.powerSqr =~ op.powerSqr
+  def sameCircle2(circle: Circle2): Boolean = (this isConcentric circle) && (this sameRange2 circle.range)
 
   def containCircle2(circle: Circle2): Boolean    = this.power >~ circle.center.norm + circle.power
   def notContainCircle2(circle: Circle2): Boolean = this.power <~ circle.center.norm - circle.power
@@ -119,9 +120,15 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
 
   // ---- for Figure2 ----
 
-  def same(any: Any): Boolean = any match {
+  def same(figure: Figure2): Boolean = figure match {
     case circle: Circle2 => this sameCircle2 circle
     case _ => false
+  }
+
+  def contain(op: Figure2): Boolean = op match {
+    case line: Line2 => ???
+    case circle: Circle2 => ???
+    case aabb: AABB2 => ???
   }
 
   def isIntersect(op: Figure2): Boolean = op match {
@@ -161,8 +168,9 @@ class Circle2(val sp: Point2, val range: Range2) extends Trans2[Circle2] with Fi
   def distanceSqr(pt: Point2): Double = sp conjugate range.distanceSqr apply pt
   def nearest(pt: Point2): Point2 = sp conjugate range.nearest apply pt
 
-  def sameCircle2(circle: Circle2): Boolean = sp conjugate range.sameCircle2 apply circle
+  def points: Set[Point2] = range.points map {_ unfrom sp}
   def aabb: AABB2 = sp unto range.aabb
+  def sameCircle2(circle: Circle2): Boolean = sp conjugate range.sameCircle2 apply circle
   def isIntersectLine2(line: Line2): Boolean = sp conjugate range.isIntersectLine2 apply line
   def isIntersectCircle2(circle: Circle2): Boolean = sp conjugate range.isIntersectCircle2 apply circle
   def intersectLine2(line: Line2): Set[Point2] = range.intersectLine2(line from sp) map {_ unfrom sp}

@@ -74,11 +74,12 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   // ---- figure to other figure ----
 
-  def sameDir2(op: Dir2): Boolean = this parallel op
-
-  def sameLine2(line: Line2): Boolean = (this through line.sp) && (this sameDir2 line.dir)
+  def points: Set[Point2] = Set(O, Point2(this))
 
   def aabb: AABB2 = AABB2.Whole
+
+  def sameDir2(op: Dir2): Boolean = this parallel op
+  def sameLine2(line: Line2): Boolean = (this through line.sp) && (this sameDir2 line.dir)
 
   def isIntersectLine2(line: Line2): Boolean = ! (this parallel line.dir)
   def intersectLine2(line: Line2): Set[Point2] = intersectTimeLine2(line) map {Point2(this) * _} toSet
@@ -134,9 +135,15 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
 
   // ---- for Figure2 ----
 
-  def same(any: Any): Boolean = any match {
+  def same(figure: Figure2): Boolean = figure match {
     case line: Line2 => this sameLine2 line
     case _ => false
+  }
+
+  def contain(op: Figure2): Boolean = op match {
+    case line: Line2 => ???
+    case circle: Circle2 => ???
+    case aabb: AABB2 => ???
   }
 
   def isIntersect(op: Figure2): Boolean = op match {
@@ -187,8 +194,9 @@ class Line2(val sp: Point2, val dir: Dir2) extends Trans2[Line2] with Figure2 {
   def distanceSqr(pt: Point2): Double = sp conjugate dir.distanceSqr apply pt
   def nearest(pt: Point2): Point2 = sp conjugate dir.nearest apply pt
 
-  def sameLine2(line: Line2): Boolean = sp conjugate dir.sameLine2 apply line
+  def points: Set[Point2] = dir.points map {_ unfrom sp}
   def aabb: AABB2 = sp unto dir.aabb
+  def sameLine2(line: Line2): Boolean = sp conjugate dir.sameLine2 apply line
   def isIntersectLine2(line: Line2): Boolean = sp conjugate dir.isIntersectLine2 apply line
   def isIntersectAABB2(aabb: AABB2): Boolean = sp conjugate dir.isIntersectAABB2 apply aabb
   def intersectLine2(line: Line2): Set[Point2] = dir.intersectLine2(line from sp) map {_ unfrom sp}

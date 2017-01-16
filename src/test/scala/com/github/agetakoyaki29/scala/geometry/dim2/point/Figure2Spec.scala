@@ -15,4 +15,9 @@ class Figure2Spec extends WordSpec {
   val circle1 = Circle2(Point2(-9843.964, 5.6876),  Range2 (644.446, -78.6877))
   val aabb1 =   AABB2  (Point2( 57.84,    687.97),  Corner2(498.88,   49684.68))
 
+  val pts = Seq()
+  val figures = Seq()
+
+  def dump(figure: Figure2): String = ???
+
 }

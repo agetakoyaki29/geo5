@@ -73,11 +73,13 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   // ---- figure to other figure ----
 
+  def points: Set[Point2] = Set(O, minmin, minmax, maxmin, maxmax)
+
+  def aabb: AABB2 = this
+
   def sameCorner2(op: Corner2): Boolean = this.zipmap(op) {_=~_} forall identity
 
   def sameAABB2(aabb: AABB2): Boolean = (this isConcentric aabb) && (this sameCorner2 aabb.corner)
-
-  def aabb: AABB2 = this
 
   // def isIntersectCircle2(circle: Circle2): Boolean = ???
   // def intersectCircle2(circle: Circle2): Set[Point2] = ???
@@ -128,9 +130,15 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
 
   // ---- for Figure2 ----
 
-  def same(any: Any): Boolean = any match {
+  def same(figure: Figure2): Boolean = figure match {
     case aabb: AABB2 => this sameAABB2 aabb
     case _ => false
+  }
+
+  def contain(op: Figure2): Boolean = op match {
+    case line: Line2 => ???
+    case circle: Circle2 => ???
+    case aabb: AABB2 => ???
   }
 
   def isIntersect(op: Figure2): Boolean = op match {
@@ -169,8 +177,9 @@ class AABB2(val sp: Point2, val corner: Corner2) extends Trans2[AABB2] with Figu
   def distanceSqr(pt: Point2): Double = sp conjugate corner.distanceSqr apply pt
   def nearest(pt: Point2): Point2 = sp conjugate corner.nearest apply pt
 
-  def sameAABB2(aabb: AABB2): Boolean = sp conjugate corner.sameAABB2 apply aabb
+  def points: Set[Point2] = corner.points map {_ unfrom sp}
   def aabb: AABB2 = sp unto corner.aabb
+  def sameAABB2(aabb: AABB2): Boolean = sp conjugate corner.sameAABB2 apply aabb
   def isIntersectAABB2(aabb: AABB2): Boolean = sp conjugate corner.isIntersectAABB2 apply aabb
   def intersectAABB2(aabb: AABB2): Set[Point2] = corner.intersectAABB2(aabb from sp) map {_ unfrom sp}
 }
