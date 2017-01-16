@@ -5,7 +5,7 @@ import com.github.agetakoyaki29.scala.geometry.Delta.RichDouble
 
 class Figure2Test extends Figure2Spec {
 
-  // for(figure <- figures) Tests(figure)
+  for(figure <- figures) Tests(figure)
 
   def Tests(it: Figure2) = {
     dump(it) should {

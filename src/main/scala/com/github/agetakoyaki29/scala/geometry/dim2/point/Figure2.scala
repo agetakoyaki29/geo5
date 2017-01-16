@@ -15,4 +15,5 @@ trait Figure2 {
   def contain(op: Figure2): Boolean
   def isIntersect(op: Figure2): Boolean
   def intersect(op: Figure2): Set[Point2]
+
 }
