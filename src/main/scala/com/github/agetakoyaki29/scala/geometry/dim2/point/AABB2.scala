@@ -9,7 +9,10 @@ import geometry.dim2.{Dim2Factory, Dim2, Vector2}
 object Corner2 extends Dim2Factory[Corner2] {
   def apply(x: Double, y: Double): Corner2 = new Corner2(x, y)
 
-  def Whole: Corner2 = Corner2(Double.MaxValue, Double.MaxValue)
+  def Whole: Corner2 = new Corner2(Double.MaxValue, Double.MaxValue) {
+    override def containPoint2(pt: Point2): Boolean = true
+    override def toString: String = "Whole"
+  }
 }
 
 
@@ -109,7 +112,11 @@ object AABB2 {
   def apply(sp: Point2, corner: Corner2) = new AABB2(sp, corner)
   def apply(sp: Point2, ep: Point2) = new AABB2(sp, Corner2(sp to ep))
 
-  def Whole: AABB2 = Corner2.Whole
+  def Whole: AABB2 = new AABB2(O, Corner2.Whole) {
+    override def updatedSP(sp: Point2): AABB2 = this
+    override def contain(figure: Figure2): Boolean = true
+    override def toString: String = "Whole"
+  }
 
   implicit def corner2ToAABB2(corner: Corner2): AABB2 = AABB2(O, corner)
 }
