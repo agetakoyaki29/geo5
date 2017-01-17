@@ -54,14 +54,14 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   def distance(pt: Point2): Double = distanceSqr(pt).sqrt
   def distanceSqr(pt: Point2): Double = {
-    val distance = this - pt.abs
+    val distance = -pt.abs + this
     if(distance forall {_ >= 0}) distance.min.sqr
     else distance filterNot {_ >= 0} map {_.sqr} sum
   }
 
   def nearest(pt: Point2): Point2 = {
     def toIdxMap(seq: Seq[Double]): Map[Int, Double] = (seq.indices zip seq).toMap
-    val distance = this - pt.abs
+    val distance = -pt.abs + this
     val ideaMap = toIdxMap(this.zipmap(pt) {_ copySign _})
     if(distance forall {_ >= 0}) {
       val minElem = toIdxMap(distance) minBy {_._2}
