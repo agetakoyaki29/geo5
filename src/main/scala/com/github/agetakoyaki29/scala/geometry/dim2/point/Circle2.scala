@@ -45,7 +45,11 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def distance(pt: Point2): Double = (pt.norm - this.norm).abs
   def distanceSqr(pt: Point2): Double = distance(pt).sqr
 
-  def nearest(pt: Point2): Point2 = pt * (this.norm / pt.norm)  // TODO if O
+  def nearest(pt: Point2): Point2 = {
+    // require(!(this.center samePoint2 pt), "not center Point2")
+    if(this.center samePoint2 pt) Point2(this)
+    else pt * (this.norm / pt.norm)
+  }
 
   // ---- figure to other figure ----
 
