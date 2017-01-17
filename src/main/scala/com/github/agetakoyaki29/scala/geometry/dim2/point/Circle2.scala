@@ -42,12 +42,19 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   def containPoint2(pt: Point2): Boolean = this.normSqr >~ pt.normSqr
 
-  def distance(pt: Point2): Double = (pt.norm - this.norm).abs
-  def distanceSqr(pt: Point2): Double = distance(pt).sqr
+  def distance(pt: Point2): Double = {
+    if(this through pt) 0
+    else (pt.norm - this.norm).abs
+  }
+  def distanceSqr(pt: Point2): Double = {
+    if(this through pt) 0
+    else distance(pt).sqr
+  }
 
   def nearest(pt: Point2): Point2 = {
+    if(this through pt) pt
     // require(!(this.center samePoint2 pt), "not center Point2")
-    if(this.center samePoint2 pt) Point2(this)
+    else if(this.center samePoint2 pt) Point2(this)
     else pt * (this.norm / pt.norm)
   }
 

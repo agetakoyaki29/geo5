@@ -62,15 +62,24 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   /**
    * this sinTo pt * pt.norm
    */
-  def distance(pt: Point2): Double = (this cross pt / this.norm).abs
-  def distanceSqr(pt: Point2): Double = (this cross pt).sqr / this.normSqr
+  def distance(pt: Point2): Double = {
+    if(this through pt) 0
+    else (this cross pt / this.norm).abs
+  }
+  def distanceSqr(pt: Point2): Double = {
+    if(this through pt) 0
+    else (this cross pt).sqr / this.normSqr
+  }
 
   /**
    * this.normalized * this cosTo pt * pt.norm
    * pt + this.normal.normalized * -distance
    * this * (this dot pt) / (this dot this)
    */
-  def nearest(pt: Point2): Point2 = Point2(this) * (this dot pt / this.normSqr)
+  def nearest(pt: Point2): Point2 = {
+    if(this through pt) pt
+    else Point2(this) * (this dot pt / this.normSqr)
+  }
 
   // ---- figure to other figure ----
 
