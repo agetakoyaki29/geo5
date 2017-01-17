@@ -4,10 +4,10 @@ package com.github.agetakoyaki29.scala.geometry
 object Delta {
 
   // object Default {
-    implicit val delta: Double = MinNormal
+    implicit val delta: Double = MinNormal.scalb(6)
   // }
 
-  def relativeDelta(d: Double): Double = d.ulp.scalb(4)
+  def relativeDelta(d: Double): Double = d.ulp.scalb(6)
 
   def eq0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = {
     d1.abs <= (delta +: deltas).max

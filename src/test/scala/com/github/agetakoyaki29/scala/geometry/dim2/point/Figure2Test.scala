@@ -19,8 +19,7 @@ class Figure2Test extends Figure2Spec with Matchers with DeltaMatchers {
       "it contain it" in {it should contain (it)}
       "it is not intersect it" in {it should isNotIntersect (it)}
       // figure, pt
-      "it nearest any pt to any pt norm =~ it distance any pt" in {for(any <- pts) {
-        (it nearest any to any norm) should =~ (it distance any)}}
+      "it nearest any pt to any pt norm =~ it distance any pt" in {for(any <- pts) (it nearest any to any norm) should =~ (it distance any)}
       "it through (it nearest any pt)" in {for(any <- pts) it should through (it nearest any)}
       // figure, figure
       "it through (it intersect any figure)" in {for(any <- figures)
