@@ -10,6 +10,7 @@ trait Figure2 {
   def distance(pt: Point2): Double
   def nearest(pt: Point2): Point2
   def through(pt: Point2): Boolean
+  def containPoint2(pt: Point2): Boolean
 
   def same(op: Figure2): Boolean
   def contain(op: Figure2): Boolean

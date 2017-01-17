@@ -3,7 +3,7 @@ package com.github.agetakoyaki29.scala.geometry.dim2.point
 import org.scalatest.WordSpec
 
 
-class Figure2Spec extends WordSpec {
+class Figure2Spec extends WordSpec with Figure2Matchers {
   val O = Point2.O
 
   val point1 =  Point2 ( 414.55,  9843.2)
@@ -18,6 +18,6 @@ class Figure2Spec extends WordSpec {
   val figures: Set[Figure2] = Set(line1, circle1, aabb1)
   val pts: Set[Point2] = Set(O, point1, Point2(dir1), Point2(range1), Point2(corner1)) ++ (figures flatMap {_.points})
 
-  def dump(figure: Figure2): String = s"($figure)"
+  def dump(figure: Figure2): String = s"figure($figure)"
 
 }
