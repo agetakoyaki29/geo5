@@ -13,8 +13,8 @@ class Figure2Test extends Figure2Spec with Matchers with DeltaMatchers {
   def Tests(it: Figure2) = {
     dump(it) should {
       // figure
-      "it.aabb contain it" in {it.aabb should contain (it)}
-      "it.aabb is intersect it" in {it.aabb should isIntersect (it)}
+      // "it.aabb contain it" in {it.aabb should contain (it)}
+      // "it.aabb is intersect it" in {it.aabb should isIntersect (it)}
       "it same it" in {it should same (it)}
       "it contain it" in {it should contain (it)}
       "it is not intersect it" in {it should isNotIntersect (it)}

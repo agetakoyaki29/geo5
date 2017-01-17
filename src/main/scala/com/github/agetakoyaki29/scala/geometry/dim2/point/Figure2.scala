@@ -5,7 +5,7 @@ import com.github.agetakoyaki29.scala.geometry
 
 trait Figure2 {
   def points: Set[Point2]
-  def aabb: AABB2
+  // def aabb: AABB2
 
   def distance(pt: Point2): Double
   def nearest(pt: Point2): Point2
