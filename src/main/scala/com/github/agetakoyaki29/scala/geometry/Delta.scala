@@ -84,7 +84,7 @@ object Delta {
   // ---- RichDouble ----
 
   implicit class RichDouble(val that: Double) {
-    def sqr: Double = that.scalb(1)
+    def sqr: Double = that.pow(2)
 
     // ---- copy from Delta ----
     def relativeDelta: Double = Delta.relativeDelta(that)
