@@ -2,6 +2,10 @@ package com.github.agetakoyaki29.scala.geometry.dim2.point
 
 import org.scalatest.WordSpec
 
+import Line2._
+import Circle2._
+import AABB2._
+
 
 class Figure2Spec extends WordSpec with Figure2Matchers {
   val O = Point2.O
@@ -15,7 +19,7 @@ class Figure2Spec extends WordSpec with Figure2Matchers {
   val circle1 = Circle2(Point2(-9843.964, 5.6876),  Range2 (644.446, -78.6877))
   val aabb1 =   AABB2  (Point2( 57.84,    687.97),  Corner2(498.88,   49684.68))
 
-  val figures: Set[Figure2] = Set(line1, circle1, aabb1)
+  val figures: Set[Figure2] = Set(line1, circle1, aabb1, dir1, range1, corner1)
   val pts: Set[Point2] = Set(O, point1, Point2(dir1), Point2(range1), Point2(corner1)) ++ (figures flatMap {_.points})
 
   def dump(figure: Figure2): String = s"figure($figure)"
