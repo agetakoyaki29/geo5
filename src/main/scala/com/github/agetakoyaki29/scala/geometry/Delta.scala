@@ -15,10 +15,10 @@ object Delta {
   def eq(d1: Double, d2: Double): Boolean = eq0(d1-d2, d1.relativeDelta, d2.relativeDelta)
   // def sumeq0(ds: Seq[Double]): Boolean = eq0(ds.sum, ds.map{_.relativeDelta}: _*)
 
-  def lt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 <= (delta +: deltas).max
+  def lt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 <=  (delta +: deltas).max
   def lt(d1: Double, d2: Double): Boolean = lt0(d1-d2, d1.relativeDelta, d2.relativeDelta)
 
-  def gt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 <= (delta +: deltas).max
+  def gt0(d1: Double, deltas: Double*)(implicit delta: Double): Boolean = d1 >= -(delta +: deltas).max
   def gt(d1: Double, d2: Double): Boolean = gt0(d1-d2, d1.relativeDelta, d2.relativeDelta)
 
   // ---- Math ----
