@@ -60,7 +60,7 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
   // def conjugate[A, B](f: A => B): A => B = f match {
   //   case f3: Trans2[A] => Trans2[B] => f3 compose {unto(_: A)} andThen {to(_: B)}
   // }
-  def conjugate[A : ClassTag, B : ClassTag](f: A => B): A => B = f compose {unto(_: A)} andThen {to(_: B)}
+  def conjugate[A : ClassTag, B : ClassTag](f: A => B): A => B = f compose {to(_: A)} andThen {unto(_: B)}
 
   // ---- UpRet ----
 
