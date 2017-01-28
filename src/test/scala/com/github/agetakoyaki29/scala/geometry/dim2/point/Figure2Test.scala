@@ -35,11 +35,11 @@ class Figure2Test extends Figure2Spec with Matchers with DeltaMatchers {
       // figure, figure
       "it is not intersect a figure" should {
         val thes = figures filterNot {it isIntersect _}
-        "it intersect the figure have size 0" in {for(the <- thes) it intersect the should have size 0}
+        "it intersect the figure is empty" in {for(the <- thes) it intersect the should be (empty)}
       }
       "it is intersect a figure" should {
         val thes = figures filter {it isIntersect _}
-        "it intersect the figure don't have size 0" in {for(the <- thes) (it intersect the size) should not be (0)}
+        "it intersect the figure is not empty" in {for(the <- thes) it intersect the should not be empty}
       }
       "it same a figure" should {
         val thes = figures filter {it same _}
