@@ -81,7 +81,7 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
   // ---- std ----
 
   override def equals(op: Any) = op match {
-    case dim2: Dim2 => this.zipmap(dim2) {_==_} reduce {_||_}
+    case dim2: Dim2 => this.zipmap(dim2) {_==_} forall identity
     case _ => false
   }
 
