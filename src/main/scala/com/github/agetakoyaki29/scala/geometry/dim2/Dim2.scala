@@ -11,7 +11,7 @@ object Dim2 extends Dim2Factory[Dim2] {
 }
 
 
-class Dim2(_x: Double, val _y: Double) extends IndexedSeq[Double] with Dim {
+class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
   val (x, y) = (_x, _y)
 
   val factory: Dim2Factory[_ <: Dim2] = Dim2
