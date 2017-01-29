@@ -20,7 +20,7 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
   this foreach {validateEach apply _}
 
   protected def validate: Dim2 => Dim2 = Dim2.Identity
-  protected def validateEach: Double => Double = Delta.NotNaN andThen Delta.NotInfinite
+  protected def validateEach: Double => Double = MyDouble.NotNaN andThen MyDouble.NotInfinite
 
   // ---- for IndexedSeq ----
 
@@ -59,7 +59,7 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
    * @param d NotZero(for zero / zero = NaN, any / zero = inf)
    */
   @UpRet def /(d: Double): Dim2 = {
-    Delta.NotZero(d)
+    MyDouble.NotZero(d)
     this mapD2 {_/d}
   }
 

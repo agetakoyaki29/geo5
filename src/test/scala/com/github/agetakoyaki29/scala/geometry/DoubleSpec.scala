@@ -9,15 +9,15 @@ abstract class DoubleSpec extends WordSpec {
   val PositiveInfinity = Double.PositiveInfinity
   val NegativeInfinity = Double.NegativeInfinity
 
-  val Zero = Delta.Zero
-  val PositiveZero = Delta.PositiveZero
-  val NegativeZero = Delta.NegativeZero
+  val Zero = MyDouble.Zero
+  val PositiveZero = MyDouble.PositiveZero
+  val NegativeZero = MyDouble.NegativeZero
 
   val MaxValue = Double.MaxValue
   val MinValue = Double.MinValue
   val MinPositiveValue = Double.MinPositiveValue
 
-  val MinNormal = Delta.MinNormal  // java.lang.Double.MIN_NORMAL
+  val MinNormal = MyDouble.MinNormal  // java.lang.Double.MIN_NORMAL
 
   // val One = 1d
 
