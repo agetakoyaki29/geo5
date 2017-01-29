@@ -98,7 +98,7 @@ class Dir2(_x: Double, _y: Double) extends Vector2(_x, _y) {
   def intersectAABB2(aabb: AABB2): Set[Point2] = intersectTimeAABB2(aabb) map {Point2(this) * _} toSet
   def intersectTimeAABB2(aabb: AABB2): Set[Double] = Set() // TODO
 
-  // ---- UpRet ----
+  // ---- instead of SameRet ----
 
   override def reverseD2 = factory(super.reverseD2)
   override def updatedD2(idx: Int, elem: Double) = factory(super.updatedD2(idx, elem))

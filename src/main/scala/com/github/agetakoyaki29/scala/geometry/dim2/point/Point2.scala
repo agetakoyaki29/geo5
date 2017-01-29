@@ -2,7 +2,7 @@ package com.github.agetakoyaki29.scala.geometry.dim2.point
 
 import scala.reflect.ClassTag
 
-import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
+import com.github.agetakoyaki29.scala.sameret.SameRet
 import com.github.agetakoyaki29.scala.geometry._
 import dim2.{Dim2Factory, Dim2, Vector2}
 
@@ -59,7 +59,7 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
   // }
   def conjugate[A : ClassTag, B : ClassTag](f: A => B): A => B = f compose {to(_: A)} andThen {unto(_: B)}
 
-  // ---- UpRet ----
+  // ---- instead of SameRet ----
 
   override def reverseD2 = factory(super.reverseD2)
   override def updatedD2(idx: Int, elem: Double) = factory(super.updatedD2(idx, elem))

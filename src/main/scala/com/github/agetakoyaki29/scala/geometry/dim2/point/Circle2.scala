@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2.point
 
-import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
+import com.github.agetakoyaki29.scala.sameret.SameRet
 import com.github.agetakoyaki29.scala.geometry._
 import dim2.{Dim2Factory, Dim2, Vector2}
 
@@ -87,7 +87,7 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
     else this intersectLine2 (this radicalLine circle)
   }
 
-  // ---- UpRet ----
+  // ---- instead of SameRet ----
 
   override def reverseD2 = factory(super.reverseD2)
   override def updatedD2(idx: Int, elem: Double) = factory(super.updatedD2(idx, elem))

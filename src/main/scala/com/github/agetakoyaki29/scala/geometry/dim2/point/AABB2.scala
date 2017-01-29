@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2.point
 
-import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
+import com.github.agetakoyaki29.scala.sameret.SameRet
 import com.github.agetakoyaki29.scala.geometry._
 import dim2.{Dim2Factory, Dim2, Vector2}
 
@@ -87,7 +87,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
   def isIntersectAABB2(aabb: AABB2): Boolean = false  // TODO
   def intersectAABB2(aabb: AABB2): Set[Point2] = Set()  // TODO
 
-  // ---- UpRet ----
+  // ---- instead of SameRet ----
 
   override def reverseD2 = factory(super.reverseD2)
   override def updatedD2(idx: Int, elem: Double) = factory(super.updatedD2(idx, elem))

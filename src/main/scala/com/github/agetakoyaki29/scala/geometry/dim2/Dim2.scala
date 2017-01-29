@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2
 
-import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
+import com.github.agetakoyaki29.scala.sameret.UpRet
 import com.github.agetakoyaki29.scala.geometry._
 
 

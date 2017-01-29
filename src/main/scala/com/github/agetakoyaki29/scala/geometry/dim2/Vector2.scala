@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2
 
-import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
+import com.github.agetakoyaki29.scala.sameret.SameRet
 import com.github.agetakoyaki29.scala.geometry._
 
 
@@ -35,7 +35,7 @@ class Vector2(_x: Double, _y: Double) extends Dim2(_x, _y) {
   final def crossGt0(op: Vector2): Boolean = x*op.y >~ y*op.x
   final def crossLt0(op: Vector2): Boolean = x*op.y <~ y*op.x
 
-  // ---- UpRet ----
+  // ---- instead of SameRet ----
 
   override def reverseD2 = factory(super.reverseD2)
   override def updatedD2(idx: Int, elem: Double) = factory(super.updatedD2(idx, elem))
