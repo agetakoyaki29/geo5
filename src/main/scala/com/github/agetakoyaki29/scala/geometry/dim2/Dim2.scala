@@ -16,8 +16,6 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
 
   val factory: Dim2Factory[_ <: Dim2] = Dim2
 
-  def toDim2: Dim2 = this
-
   // -- validate --
 
   validate apply this

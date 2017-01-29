@@ -16,8 +16,6 @@ class Range2(_x: Double, _y: Double) extends Vector2(_x, _y) {
 
   override val factory: Dim2Factory[_ <: Range2] = Range2
 
-  def toRange2: Range2 = this
-
   override protected def validate = Dim2.NotZero andThen super.validate
 
   // ----

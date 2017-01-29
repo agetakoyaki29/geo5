@@ -21,8 +21,6 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   override val factory: Dim2Factory[_ <: Corner2] = Corner2
 
-  def toCorner2: Corner2 = this
-
   // ----
 
   def center: Point2 = O

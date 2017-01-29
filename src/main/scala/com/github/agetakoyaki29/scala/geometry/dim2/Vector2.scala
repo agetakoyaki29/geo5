@@ -15,8 +15,6 @@ class Vector2(_x: Double, _y: Double) extends Dim2(_x, _y) {
 
   override val factory: Dim2Factory[_ <: Vector2] = Vector2
 
-  def toVector2: Vector2 = this
-
   // ----
 
   /**
