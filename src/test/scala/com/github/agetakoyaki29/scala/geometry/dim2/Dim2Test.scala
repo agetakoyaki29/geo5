@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2
 
-import com.github.agetakoyaki29.scala.geometry.Delta.RichDouble
+import com.github.agetakoyaki29.scala.geometry._
 
 
 class Dim2Test extends Dim2Spec {

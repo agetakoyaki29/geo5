@@ -2,8 +2,7 @@ package com.github.agetakoyaki29.scala.geometry.dim2
 
 import scala.reflect.ClassTag
 
-import com.github.agetakoyaki29.scala.geometry
-import geometry.DimFactory
+import com.github.agetakoyaki29.scala.geometry._
 
 
 abstract class Dim2Factory[T <: Dim2 : ClassTag] extends DimFactory[T] {

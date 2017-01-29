@@ -3,9 +3,8 @@ package com.github.agetakoyaki29.scala.geometry.dim2.point
 import scala.reflect.ClassTag
 
 import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
-import com.github.agetakoyaki29.scala.geometry
-import geometry.Delta._
-import geometry.dim2.{Dim2Factory, Dim2, Vector2}
+import com.github.agetakoyaki29.scala.geometry._
+import dim2.{Dim2Factory, Dim2, Vector2}
 
 
 object Point2 extends Dim2Factory[Point2] {

@@ -1,9 +1,7 @@
 package com.github.agetakoyaki29.scala.geometry.dim2
 
 import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
-import com.github.agetakoyaki29.scala.geometry
-import geometry.Delta._
-import geometry.Dim
+import com.github.agetakoyaki29.scala.geometry._
 
 
 object Dim2 extends Dim2Factory[Dim2] {
@@ -22,7 +20,7 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
   this foreach {validateEach apply _}
 
   protected def validate: Dim2 => Dim2 = Dim2.Identity
-  protected def validateEach: Double => Double = NotNaN andThen NotInfinite
+  protected def validateEach: Double => Double = Delta.NotNaN andThen Delta.NotInfinite
 
   // ---- for IndexedSeq ----
 
@@ -61,7 +59,7 @@ class Dim2(_x: Double, _y: Double) extends IndexedSeq[Double] with Dim {
    * @param d NotZero(for zero / zero = NaN, any / zero = inf)
    */
   @UpRet def /(d: Double): Dim2 = {
-    NotZero(d)
+    Delta.NotZero(d)
     this mapD2 {_/d}
   }
 

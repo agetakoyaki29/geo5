@@ -1,8 +1,7 @@
 package com.github.agetakoyaki29.scala.geometry.dim2
 
 import com.github.agetakoyaki29.scala.sameret.{SameRet, UpRet}
-import com.github.agetakoyaki29.scala.geometry
-import geometry.Delta._
+import com.github.agetakoyaki29.scala.geometry._
 
 
 object Vector2 extends Dim2Factory[Vector2] {

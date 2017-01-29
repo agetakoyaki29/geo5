@@ -2,8 +2,7 @@ package com.github.agetakoyaki29.scala.geometry.dim2.point
 
 import org.scalatest.Matchers
 
-import com.github.agetakoyaki29.scala.geometry.DeltaMatchers
-import com.github.agetakoyaki29.scala.geometry.Delta.RichDouble
+import com.github.agetakoyaki29.scala.geometry._
 
 
 class Figure2Test extends Figure2Spec with Matchers with DeltaMatchers {

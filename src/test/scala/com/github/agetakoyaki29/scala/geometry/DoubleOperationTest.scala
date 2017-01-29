@@ -2,8 +2,6 @@ package com.github.agetakoyaki29.scala.geometry
 
 import org.scalatest.Matchers
 
-import com.github.agetakoyaki29.scala.geometry.Delta.RichDouble
-
 
 class DoubleOperationTest extends DoubleSpec with Matchers {
 

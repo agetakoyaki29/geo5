@@ -1,7 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry
 
 import com.github.agetakoyaki29.scala.geometry
-import geometry.Delta._
 
 
 trait DimFactory[T <: Dim] {

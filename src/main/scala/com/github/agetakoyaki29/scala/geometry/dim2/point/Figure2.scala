@@ -1,6 +1,6 @@
 package com.github.agetakoyaki29.scala.geometry.dim2.point
 
-import com.github.agetakoyaki29.scala.geometry
+import com.github.agetakoyaki29.scala.geometry._
 
 
 trait Figure2 {
