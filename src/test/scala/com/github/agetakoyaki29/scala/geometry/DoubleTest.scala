@@ -43,4 +43,27 @@ class DoubleTest extends DoubleSpec {
     assert(MaxValue + MinValue isZero)
   }
 
+  "overflow" when {
+    "MaxValue * 2 is infinite" in {
+      assert(MaxValue * 2 isPositiveInfinite)
+      assert(MinValue * 2 isNegativeInfinite)
+    }
+    "MaxValue nextUp is infinite" in {
+      assert(MaxValue.nextUp isPositiveInfinite)
+      assert(MinValue.nextDown isNegativeInfinite)
+    }
+  }
+  "underflow" when {
+    "MinPositiveValue / 2 is zero" in {
+      assert(MinPositiveValue / 2 isZero)
+    }
+  }
+
+  "1 / MinNormal <= MaxValue" in {
+    assert(1 / MinNormal <= MaxValue)
+  }
+  "1 / MinPositiveValue is infinite" in {
+    assert(1 / MinPositiveValue isInfinite)
+  }
+
 }

@@ -1,9 +1,11 @@
 package com.github.agetakoyaki29.scala.geometry
 
+import org.scalatest.Matchers
+
 import com.github.agetakoyaki29.scala.geometry.Delta.RichDouble
 
 
-class DoubleOperationTest extends DoubleSpec {
+class DoubleOperationTest extends DoubleSpec with Matchers {
 
   "about ==,!=,<,<=,>,>=(6 comparison operations)" when {
     "NaN !== Nan" in {
@@ -71,4 +73,5 @@ class DoubleOperationTest extends DoubleSpec {
       assert(NegativeInfinity / PositiveZero === NegativeInfinity)
     }
   }
+
 }
