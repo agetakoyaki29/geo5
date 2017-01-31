@@ -47,7 +47,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
     false
   }
 
-  def containPoint2(pt: Point2): Boolean = this.zipmap(pt.abs) {_>~_} forall identity
+  def containPoint2(pt: Point2): Boolean = this zip pt.abs forall tupled{_>~_}
 
   def distance(pt: Point2): Double = distanceSqr(pt).sqrt
   def distanceSqr(pt: Point2): Double = {
@@ -59,7 +59,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
   def nearest(pt: Point2): Point2 = {
     def toIdxMap(seq: Seq[Double]): Map[Int, Double] = (seq.indices zip seq).toMap
     val distance = -pt.abs + this
-    val ideaMap = toIdxMap(this.zipmap(pt) {_ copySign _})
+    val ideaMap = toIdxMap(this zip pt map tupled{_ copySign _})
     if(distance forall {_ >= 0}) {
       val minElem = toIdxMap(distance) minBy {_._2}
       val update = ideaMap -- (ideaMap.keySet -  minElem._1)
@@ -77,7 +77,7 @@ class Corner2(_x: Double, _y: Double) extends Vector2(_x.abs, _y.abs) {
 
   def aabb: AABB2 = this
 
-  def sameCorner2(op: Corner2): Boolean = this.zipmap(op) {_=~_} forall identity
+  def sameCorner2(op: Corner2): Boolean = this zip op forall tupled{_=~_}
 
   def sameAABB2(aabb: AABB2): Boolean = (this isConcentric aabb) && (this sameCorner2 aabb.corner)
 

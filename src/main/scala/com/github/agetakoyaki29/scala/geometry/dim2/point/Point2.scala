@@ -27,7 +27,7 @@ class Point2(_x: Double, _y: Double) extends Vector2(_x, _y) with Trans2[Point2]
   def distance(op: Point2): Double = (this to op).norm
   def distanceSqr(op: Point2): Double = (this to op).normSqr
 
-  def samePoint2(op: Point2) = this.zipmap(op) {_=~_} forall identity
+  def samePoint2(op: Point2) = this zip op forall tupled{_=~_}
 
   // ---- for Trans2 ----
 

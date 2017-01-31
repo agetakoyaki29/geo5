@@ -6,6 +6,9 @@ Whole
 Zero
 O
 
-* use a zip b map {...}.tupled instead of zipmap
-remove zipmap, using Function2 tupled
-implicit def f2Tof1
+// ----
+
+* sameret ...
+
+* Trans2
+class AAA with Trans2[AAA]

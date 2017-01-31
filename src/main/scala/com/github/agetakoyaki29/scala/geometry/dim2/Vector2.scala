@@ -19,7 +19,7 @@ class Vector2(_x: Double, _y: Double) extends Dim2(_x, _y) {
   /**
    * return dot
    */
-  final def dot(op: Vector2): Double = zipmap(op) {_*_} sum
+  final def dot(op: Vector2): Double = this zip op map tupled{_*_} sum
 
   final def dotEq0(op: Vector2): Boolean = x*op.x =~ - y*op.y
   final def dotGt0(op: Vector2): Boolean = x*op.x >~ - y*op.y
