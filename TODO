@@ -6,6 +6,15 @@ Whole
 Zero
 O
 
+* impl AABB2
+Whole
+updateMaxMax ...
+toContain(pt ...) or make(pt ...)
+
+* remove sp in Circle2, AABB2
+
+* AABB2 updatedRange => updatedCorner
+
 // ----
 
 * sameret ...
